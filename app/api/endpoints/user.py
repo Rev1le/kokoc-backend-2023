@@ -47,10 +47,10 @@ async def get_user_by_token(user: AuthUser) -> entities.ResponseUser:
     return entities.ResponseUser(**user.dict())
 
 
-@router.get("/{uuid}")
-async def get_user_by_token(user: AuthUser, uuid: str) -> entities.ResponseUser:
-    user_from_uuid = await get_user_by_uuid_async(uuid)
-    return entities.ResponseUser(**user_from_uuid.dict())
+# @router.get("/{uuid}")
+# async def get_user_by_token(user: AuthUser, uuid: str) -> entities.ResponseUser:
+#     user_from_uuid = await get_user_by_uuid_async(uuid)
+#     return entities.ResponseUser(**user_from_uuid.dict())
 
 
 @router.post("/reg")
@@ -66,13 +66,10 @@ async def registration_user(registration_data: Registration, logger: GetLogger) 
     user = db.User(
         uuid=str(uuid.uuid4()),
         name=registration_data.name,
-        # birthday=None,
         password_hash=password_hash,
         email=registration_data.email,
-        # bio=None,
         photo=None
     )
-
 
     try:
         created_user = await create_user(user)

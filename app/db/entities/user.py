@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 import datetime
-from sqlalchemy import Table, Column, String, Text, Date
+from sqlalchemy import Table, Column, String, Text, Date, ForeignKey
 from . import metadata
 
 
@@ -16,6 +16,7 @@ class ResponseUser(BaseModel):
     uuid: str
     name: str
     photo: str | None
+    role_id: int
 
 
 users_table = Table(
@@ -26,4 +27,5 @@ users_table = Table(
     Column('password_hash', String(40), nullable=False),
     Column('email', String(128), nullable=False, unique=True),
     Column('photo', Text),
+    Column('role_id', ForeignKey("user_role.id"))
 )

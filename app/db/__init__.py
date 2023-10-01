@@ -36,10 +36,24 @@ async def create_user_role_table_migrations():
     stmt = insert(user_role_table).values(name="руководитель проекта", id=3)
     await save_insert(stmt)
 
+async def create_activity_table_migrations():
+    stmt = insert(activity_table).values(name="Прогулка", id=1, index=10)
+    await save_insert(stmt)
+
+    stmt = insert(activity_table).values(name="Велопрогулка", id=2, index=2)
+    await save_insert(stmt)
+
+    stmt = insert(activity_table).values(name="Пробежка", id=3, index=20)
+    await save_insert(stmt)
+
+    stmt = insert(activity_table).values(name="Заплыв", id=4, index=30)
+    await save_insert(stmt)
+
 
 async def startup():
     await database.connect()
     await create_user_role_table_migrations()
+    await create_activity_table_migrations()
 
 
 async def shutdown():
