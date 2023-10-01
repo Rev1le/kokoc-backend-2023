@@ -10,6 +10,8 @@ class User(BaseModel):
     password_hash: str
     name: str
     photo: str | None
+    role_id: int
+    # role_name: str | None
 
 
 class ResponseUser(BaseModel):
@@ -17,6 +19,7 @@ class ResponseUser(BaseModel):
     name: str
     photo: str | None
     role_id: int
+    role_name: str | None
 
 
 users_table = Table(

@@ -5,11 +5,13 @@ from app.api.endpoints import (
     task_block,
     update_user_data,
     vacancy,
-    user
+    user,
+    activity
 )
 
 api_router = APIRouter()
 api_router.include_router(user.router, prefix="/user")
+api_router.include_router(activity.router, prefix="/activity")
 # api_router.include_router(user.router, prefix="/job_applicant")
 # api_router.include_router(vacancy.router, prefix="/vacancy")
 # api_router.include_router(mentor.router, prefix="/mentor")

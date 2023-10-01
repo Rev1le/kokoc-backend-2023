@@ -18,6 +18,12 @@ from . import metadata
 #     photo: str | None
 #     role_id: int
 
+class Staff(BaseModel):
+    id: int
+    user_id: str
+    company_branch_id: int
+    balance: int
+    fund_id: int
 
 staff_table = Table(
     'staff',
@@ -26,5 +32,5 @@ staff_table = Table(
     Column('user_id', ForeignKey('user.uuid'), nullable=False),
     Column('company_branch_id', ForeignKey('company_branch.id'), nullable=False),
     Column('balance', Integer, nullable=False),
-    Column('fund_id', ForeignKey('fund.id'), nullable=False),
+    Column('fund_id', ForeignKey('fund.id')),
 )

@@ -1,0 +1,8 @@
+In time 2023-10-01 14:01:34.414400 print this message => 
+Result user token => uuid='873d85dc-ac14-4887-b12c-4f6ca418a782' email='tegrgrgst@mail.ru' password_hash='1e8e1d8cec7b7ea904bd6deecb4fc93138f9a8a79180103db286530accb0be1a' name='Никита' photo=None role_id=1 role_name='Сотрудник компании'
+
+
+In time 2023-10-01 14:01:44.662375 print this message => 
+Result user token => uuid='873d85dc-ac14-4887-b12c-4f6ca418a782' email='tegrgrgst@mail.ru' password_hash='1e8e1d8cec7b7ea904bd6deecb4fc93138f9a8a79180103db286530accb0be1a' name='Никита' photo=None role_id=1 role_name='Сотрудник компании'
+
+

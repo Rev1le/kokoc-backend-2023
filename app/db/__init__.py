@@ -55,6 +55,21 @@ async def startup():
     await create_user_role_table_migrations()
     await create_activity_table_migrations()
 
+    stmt = insert(users_table).values(
+        uuid="873d85dc-ac14-4887-b12c-4f6ca418a782",
+        name="Никита",
+        password_hash='1e8e1d8cec7b7ea904bd6deecb4fc93138f9a8a79180103db286530accb0be1a',
+        email='tegrgrgst@mail.ru',
+        role_id=1
+        )
+    await save_insert(stmt)
+
+    stmt = insert(tokens_table).values(
+        token='1e8e1d8cec7b7ea904bd6deecb4fc93138f9a8a79180103db286530accb0be1a',
+        owner_uuid='873d85dc-ac14-4887-b12c-4f6ca418a782'
+        )
+    await save_insert(stmt)
+
 
 async def shutdown():
     await database.disconnect()

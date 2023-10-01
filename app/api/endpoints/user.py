@@ -2,6 +2,7 @@ import uuid
 import hashlib
 import sqlite3
 from datetime import datetime, timezone
+from app.db.queries.create import create_staff
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -11,17 +12,17 @@ from app.api.deps import GetLogger
 from app import db
 from app.api.deps import AuthUser
 from app.db import entities
-from app.db.queriesold.create.create_user_async import create_user
-from app.db.queriesold.create.create_auth_token_async import create_auth_token
-from app.db.queriesold.get.get_user_by_uuid_async import get_user_by_uuid_async
-from app.db.queriesold.get.get_user_by_email_password_hash_async import get_user_by_email_password_hash
+from app.db.queries.create.create_user_async import create_user
+from app.db.queries.create.create_auth_token_async import create_auth_token
+# from app.db.queries.get.get_user_by_uuid_async import get_user_by_uuid_async
+from app.db.queries.get.get_user_by_email_password_hash_async import get_user_by_email_password_hash
 
 
 class Registration(BaseModel):
     email: str
     password: str
     name: str
-    # birthday: str
+    user_role: int
 
 
 class RegistrationAccess(BaseModel):
@@ -44,13 +45,8 @@ router = APIRouter()
 
 @router.get("/me")
 async def get_user_by_token(user: AuthUser) -> entities.ResponseUser:
+    print(user.dict())
     return entities.ResponseUser(**user.dict())
-
-
-# @router.get("/{uuid}")
-# async def get_user_by_token(user: AuthUser, uuid: str) -> entities.ResponseUser:
-#     user_from_uuid = await get_user_by_uuid_async(uuid)
-#     return entities.ResponseUser(**user_from_uuid.dict())
 
 
 @router.post("/reg")
@@ -73,6 +69,8 @@ async def registration_user(registration_data: Registration, logger: GetLogger) 
 
     try:
         created_user = await create_user(user)
+        if registration_data.user_role == 1:
+            await create_staff(user)
         print(created_user)
 
     except sqlite3.IntegrityError as e:

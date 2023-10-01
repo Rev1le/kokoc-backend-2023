@@ -4,19 +4,20 @@ from sqlalchemy import Table, Column, String, Text, Date, ForeignKey, Integer
 from . import metadata
 
 
-class User(BaseModel):
-    uuid: str
-    email: str
-    password_hash: str
-    name: str
-    photo: str | None
+class ActivityLog(BaseModel):
+    datetime: datetime.datetime
+    activity_id: int
+    activity_index: int
+    coin_amount: int
+    staff_id: int
+    meter_amount: int
 
 
-class ResponseUser(BaseModel):
-    uuid: str
-    name: str
-    photo: str | None
-    role_id: int
+# class ResponseUser(BaseModel):
+#     uuid: str
+#     name: str
+#     photo: str | None
+#     role_id: int
 
 
 activity_log_table = Table(
