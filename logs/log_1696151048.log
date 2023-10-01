@@ -1,0 +1,6 @@
+In time 2023-10-01 09:04:07.839814 print this message => Create user error => UNIQUE constraint failed: user.email
+
+In time 2023-10-01 09:04:09.366755 print this message => Create user error => UNIQUE constraint failed: user.email
+
+In time 2023-10-01 09:06:28.209352 print this message => Create user error => UNIQUE constraint failed: user.email
+
